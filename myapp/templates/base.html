@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+</head>
+<body>
+  
+<div class="navbar">
+  <a href="#" class="navbar-brand">GigaPack</a>
+</div>
+<!-- Начальный блок -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>Создайте уникальную упаковку с нами</h1>
+    <p>Мгновенная генерация стильной упаковочной бумаги для вашего бренда</p>
+    <button>Сделать упаковку</button></a>
+  </div>
+  
+</header>
+
+
+  <div class="upbumaga">
+    <div class="upbumaga_text">
+      <h2>Платформа для упаковочной бумаги</h2>
+      <p>Создайте уникальную упаковочную бумагу с нашей помощью</p>
+    </div>
+    <div class="upbumaga_images">
+      <img class="imageup"src="../static/myapp/images/present1.jpg" alt="">
+      <img class="imageup"src="../static/myapp/images/present2.jpg" alt="">
+      <img class="imageup"src="../static/myapp/images/present3.webp" alt="">
+    </div>
+  </div>
+
+  <div class="makeuppaper" id="MUP">
+    <div class="preferences">
+        <div class="container2">
+            <p>Цвет обложки</p>
+            <input type="color" id="colorPicker1" class="color-picker" value="#ff0000">
+        </div>
+        <div id="colorDisplay1" class="color-display"></div>
+
+        <div class="container2">
+            <p>Цвет границы</p>
+            <input type="color" id="colorPicker2" class="color-picker" value="#ff0000">
+        </div>
+        <div id="colorDisplay2" class="color-display"></div>
+
+        <div class="container">
+            <p class="polztext">Ширина обложки в(мм)</p>
+            <div class="slider-container">
+                <input class="slider" type="range" id="rangeSlider1" min="10" max="2000" value="10" oninput="updateNumberInput('numberInput1', this.value)">
+                <input class="number_slider" type="number" id="numberInput1" min="10" max="2000" value="10" oninput="updateRangeSlider('rangeSlider1', this.value)">
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="polztext">Высота обложки в(мм)</p>
+            <div class="slider-container">
+                <input type="range" id="rangeSlider2" min="10" max="2000" value="10" oninput="updateNumberInput('numberInput2', this.value)">
+                <input type="number" id="numberInput2" min="10" max="2000" value="10" oninput="updateRangeSlider('rangeSlider2', this.value)">
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="polztext">Ширина границы в(дюйм)</p>
+            <div class="slider-container">
+                <input type="range" id="rangeSlider3" min="1" max="12" value="1" oninput="updateNumberInput('numberInput3', this.value)">
+                <input type="number" id="numberInput3" min="1" max="12" value="1" oninput="updateRangeSlider('rangeSlider3', this.value)">
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="polztext">Ширина и Высота картинки в(мм)</p>
+            <div class="slider-container">
+                <input type="range" id="rangeSlider4" min="10" max="200" value="1" oninput="updateNumberInput('numberInput4', this.value)">
+                <input type="number" id="numberInput4" min="10" max="200" value="1" oninput="updateRangeSlider('rangeSlider4', this.value)">
+            </div>
+        </div>
+        <div class="container">
+            <p class="polztext">Строки</p>
+            <div class="slider-container">
+                <input type="range" id="rangeSlider5" min="1" max="10" value="1" oninput="updateNumberInput('numberInput5', this.value)">
+                <input type="number" id="numberInput5" min="1" max="10" value="1" oninput="updateRangeSlider('rangeSlider5', this.value)">
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="polztext">Столбцы</p>
+            <div class="slider-container">
+                <input type="range" id="rangeSlider6" min="1" max="10" value="1" oninput="updateNumberInput('numberInput6', this.value)">
+                <input type="number" id="numberInput6" min="1" max="10" value="1" oninput="updateRangeSlider('rangeSlider6', this.value)">
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingIndicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>Пожалуйста, подождите...</p>
+    </div>
+      
+
+    <div class="upload_image">
+        <div class="image_input">
+            <p>Загрузите фото (желательно небольших размеров)</p>
+            <input type="file" id="imageInput" accept="image/*" multiple onchange="previewImages(event)">
+        </div>
+        <div class="image-preview-container" id="imagePreviewContainer">
+          <img id="imagePreview" src="" alt="Image Preview">
+        </div>
+
+        <fieldset>
+            <legend>Повернуть изображение?</legend>
+            <div>
+                <input type="radio" id="Yes" name="rotate" value="Yes">
+                <label for="Yes">Да</label>
+            </div>
+
+            <div>
+                <input type="radio" id="No" name="rotate" value="No">
+                <label for="No">Нет</label>
+            </div>
+
+            <div>
+                <input type="radio" id="Random" name="rotate" value="Random">
+                <label for="Random">Случайно</label>
+            </div>
+        </fieldset>
+
+        <h5>Введите значение для поворота в градусах</h5>
+        <input type="text" id="textInput" disabled>
+
+        <fieldset class="template">
+            <legend>Выберите шаблон:</legend>
+            <div>
+                <input type="radio" id="template1" name="template" value="ChessCover">
+                <img src="../static/myapp/images/ChessCover.png" alt="">
+            </div>
+
+            <div>
+                <input type="radio" id="template2" name="template" value="BigMinCover">
+                <img src="../static/myapp/images/BigMinCover.png" alt="">
+            </div>
+
+            <div>
+                <input type="radio" id="template3" name="template" value="DefaultCover">
+                <img src="../static/myapp/images/DefaultCover.png" alt="">
+            </div>
+        </fieldset>
+        <button type="button" onclick="collectData()">Потвердить</button>
+    </div>
+</div>
+
+
+
+<script>
+    function hexToRgb(hex) {
+        var bigint = parseInt(hex.slice(1), 16);
+        var r = (bigint >> 16) & 255;
+        var g = (bigint >> 8) & 255;
+        var b = bigint & 255;
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    document.getElementById('colorPicker1').addEventListener('input', function() {
+        var color = this.value;
+        document.getElementById('colorDisplay1').style.backgroundColor = color;
+    });
+
+    document.getElementById('colorPicker2').addEventListener('input', function() {
+        var color = this.value;
+        document.getElementById('colorDisplay2').style.backgroundColor = color;
+    });
+
+    function updateNumberInput(numberInputId, value) {
+        document.getElementById(numberInputId).value = value;
+    }
+
+    function updateRangeSlider(rangeSliderId, value) {
+        document.getElementById(rangeSliderId).value = value;
+    }
+
+    var yesRadio = document.getElementById("Yes");
+    var noRadio = document.getElementById("No");
+    var randomRadio = document.getElementById("Random");
+    var textInput = document.getElementById("textInput");
+
+    function checkRadioButtons() {
+        if (yesRadio.checked) {
+            textInput.disabled = false;
+        } else {
+            textInput.disabled = true;
+        }
+    }
+
+    yesRadio.addEventListener("change", checkRadioButtons);
+    noRadio.addEventListener("change", checkRadioButtons);
+    randomRadio.addEventListener("change", checkRadioButtons);
+
+    checkRadioButtons();
+
+    function previewImages(event) {
+        var input = event.target;
+        var container = document.getElementById('imagePreviewContainer');
+        container.innerHTML = ''; 
+        if (input.files && input.files.length > 0) {
+            for (var i = 0; i < input.files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = (function(file) {
+                    return function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = file.name;
+                        container.appendChild(img);
+                    };
+                })(input.files[i]);
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    }
+
+    function collectData() {
+
+    document.getElementById('loadingIndicator').style.display = 'block';
+    
+    var data = {
+        coverColor: document.getElementById('colorPicker1') ? hexToRgb(document.getElementById('colorPicker1').value) : null,
+        borderColor: document.getElementById('colorPicker2') ? hexToRgb(document.getElementById('colorPicker2').value) : null,
+        coverWidth: document.getElementById('numberInput1') ? document.getElementById('numberInput1').value : null,
+        coverHeight: document.getElementById('numberInput2') ? document.getElementById('numberInput2').value : null,
+        borderWidth: document.getElementById('numberInput3') ? document.getElementById('numberInput3').value : null,
+        imageWidthHeight: document.getElementById('numberInput4') ? document.getElementById('numberInput4').value : null,
+        rows: document.getElementById('numberInput5') ? document.getElementById('numberInput5').value : null,
+        columns: document.getElementById('numberInput6') ? document.getElementById('numberInput6').value : null,
+        rotate: document.querySelector('input[name="rotate"]:checked') ? document.querySelector('input[name="rotate"]:checked').value : null,
+        rotationDegrees: document.getElementById('textInput') ? document.getElementById('textInput').value : null,
+        template: document.querySelector('input[name="template"]:checked') ? document.querySelector('input[name="template"]:checked').value : null,
+        imageFiles: []
+    };
+
+    var imageInput = document.getElementById('imageInput');
+    if (imageInput.files && imageInput.files.length > 0) {
+        var filePromises = [];
+        for (var i = 0; i < imageInput.files.length; i++) {
+            filePromises.push(new Promise((resolve) => {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    resolve(e.target.result);
+                };
+                reader.readAsDataURL(imageInput.files[i]);
+            }));
+        }
+
+        Promise.all(filePromises).then((results) => {
+            data.imageFiles = results;
+
+            fetch('/process/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+
+                if (data.content && typeof data.content === 'string') {
+                    const link = document.createElement('a');
+                    
+                    const base64Url = 'data:application/pdf;base64,' + data.content;
+                    
+                    console.log('Generated URL:', base64Url);
+
+                    link.href = base64Url;
+                    link.download = 'GigaCover.pdf';
+                    
+                    document.body.appendChild(link);
+                    console.log('Link appended to body.');
+
+                    link.click();
+                    console.log('Download initiated.');
+
+                    document.body.removeChild(link);
+                    console.log('Link removed from body.');
+                } else {
+                    console.error('Invalid content or content is not a string.');
+                }
+                document.getElementById('loadingIndicator').style.display = 'none';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('loadingIndicator').style.display = 'none';
+            });
+        });
+    } else {
+        fetch('/process/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            document.getElementById('loadingIndicator').style.display = 'none';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            document.getElementById('loadingIndicator').style.display = 'none';
+        });
+    }
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+
+<!-- Подвал -->
+<footer class="footer">
+  
+  <h2>Спасибо за ваш интерес к нашей упаковочной бумаге!</h2>
+
+    <p>Мы предлагаем широкий ассортимент высококачественной упаковочной бумаги для любых нужд.</p>
+
+  <div class="footer-container">
+    
+    <nav class="footer-nav">
+      <a href="#about">О нас</a>
+      <a href="#products">Продукты</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+
+    <div class="social-links-container">
+      <p>Следите за нами в социальных сетях:</p>
+      <div class="social-links">
+        <a href=""><img src="../static/myapp/images/icon2 gmail-svgrepo-com.svg" alt=""></a>
+        <a href=""><img src="../static/myapp/images/Icon3 vk-with-circle-svgrepo-com.svg" alt=""></a>
+        <a href=""><img src="../static/myapp/images/icon4 github.svg" alt=""></a>
+        <a href=""><img src="../static/myapp/images/Icon1 telegram-svgrepo-com.svg" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Упаковочная бумага. Все права защищены.</p>
+  </div>
+</footer>
+</body>
+</html>
