@@ -30,7 +30,7 @@
 
 4. Запустите приложение:
    ```bash
-   python app.py
+   python manage.py runserver
    ```
 
 ## Команда разработчиков
