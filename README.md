@@ -24,16 +24,33 @@ git clone https://github.com/GigaGitCoder/GigaPack.git
 cd GigaPack
 ```
 
-2. Установите зависимости:
+2. Создайте и активируйте виртуальное окружение:
+```bash
+# Windows
+python -m venv venv
+.\venv\Scripts\activate
+
+# Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. Установите зависимости:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. ⚠️ ВАЖНО: Настройка API-ключей
+4. ⚠️ ВАЖНО: Настройка API-ключей
    - Получите API-ключ с сервиса "МоиОтчеты облако" и вставьте его в файл `api.py`
    - Получите Auth-token с сервиса "imageban" и вставьте его в файл `image_to_url.py`
 
-4. Запустите сервер разработки:
+5. Выполните миграции базы данных:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+6. Запустите сервер разработки:
 ```bash
 python manage.py runserver
 ```
