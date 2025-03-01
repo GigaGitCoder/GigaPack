@@ -42,7 +42,7 @@ python -m venv venv
 
 # Linux/macOS
 python3 -m venv venv
-source venv/bin/activate
+source source venv\Scripts\activate
 ```
 
 3. Установите зависимости:
