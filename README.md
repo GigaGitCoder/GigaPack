@@ -8,7 +8,7 @@
 ![Stars](https://img.shields.io/github/stars/GigaGitCoder/GigaPack)
 
 </div>
-
+ 
 > 🏆 Этот проект был разработан в рамках IX межрегионального хакатона «RinHack» (29 ноября - 01 декабря 2024) <br>
 > <img src="https://img.icons8.com/fluency/48/000000/microsoft-powerpoint-2019.png" width="20" height="20"/> **[Презентация проекта](GigaPack.pptx)** 
 
