@@ -1,10 +1,13 @@
-<h1 align="center">GigaPack</h1>
+<div align="center">
+<h1>GigaPack</h1>
 
 ![Contributors](https://img.shields.io/github/contributors/GigaGitCoder/GigaPack)
 ![Issues](https://img.shields.io/github/issues/GigaGitCoder/GigaPack)
 ![MIT License](https://img.shields.io/github/license/GigaGitCoder/GigaPack)
 ![Forks](https://img.shields.io/github/forks/GigaGitCoder/GigaPack)
 ![Stars](https://img.shields.io/github/stars/GigaGitCoder/GigaPack)
+
+</div>
 
 > 🏆 Этот проект был разработан в рамках IX межрегионального хакатона «RinHack» (29 ноября - 01 декабря 2024) <br>
 > <img src="https://img.icons8.com/fluency/48/000000/microsoft-powerpoint-2019.png" width="20" height="20"/> **[Презентация проекта](GigaPack.pptx)** 
