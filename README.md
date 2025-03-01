@@ -13,7 +13,7 @@
 * <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="13" height="13"/> HTML5
 * <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" width="13" height="13"/> CSS3
 * <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" width="13" height="13"/> JavaScript
-* <img src="https://быстрыеотчеты.рф/assets/favicon_ru-99800c34aaf8490633390f2f5750a139e0daf3ce278c7a3c1a1fd291f7b9190e.ico" width="13" height="13"/> API сервиса "МоиОтчеты облако"
+* <img src="https://yt3.googleusercontent.com/ytc/AIf8zZRL5lBi2as7dUbkjbYm7uJZw_bt3kOFrjE1t8yD=s900-c-k-c0x00ffffff-no-rj" width="13" height="13"/> API сервиса "МоиОтчеты облако"
 * <img src="https://imageban.ru/favicon.ico" width="13" height="13"/> API сервиса "imageban"
 
 ## 🚀 Установка и запуск
